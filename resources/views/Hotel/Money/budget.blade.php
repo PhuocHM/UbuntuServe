@@ -1,30 +1,6 @@
 @extends('include.admin')
 @section('title', 'Sổ thu chi')
 @section('main')
-    {{-- Modal Excel --}}
-    <div class="modal fade" id="import_excel_form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Thêm bằng file Excel</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form action="{{ url('import_excel') }}" method="post" enctype="multipart/form-data">
-                    @csrf
-                    <div class="modal-body">
-                        <input type="file" name="file" accept=".xlsx">
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-                        <button type="submit" class="btn btn-primary">Lưu</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
     {{-- Modal xóa --}}
     <div class="modal fade" id="xoa-money-log" data-backdrop="static" tabindex="-1" role="dialog"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -144,7 +120,15 @@
                             <tr>
                                 <th><b>Chi nhánh</b></th>
                                 <td>
-                                    <input id="edit_storage_id" type="text" class="form-control" name="edit_storage_id">
+                                    <select id="edit_storage_id" name="edit_storage_id"
+                                        class="select2 js-example-basic-single js-states form-control" style="width:100%"
+                                        data-select2-id="4" tabindex="-1" aria-hidden="true">
+                                        <option disabled selected>Chọn chi nhánh</option>
+                                        @foreach ($storage as $key => $value)
+                                            <option value="{{ $value->id }}">{{ $value->storage_name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
                                 </td>
                             </tr>
                             <tr>
@@ -182,7 +166,7 @@
             </div>
         </div>
     </div>
-    {{-- <div style="float: left">
+    <div style="float: left">
         <table>
             <tr>
                 <td>
@@ -207,7 +191,7 @@
                 </td>
             </tr>
         </table>
-    </div> --}}
+    </div>
     <table class="table table-hover">
         <tr>
             <th scope="col">STT</th>
@@ -225,7 +209,7 @@
             @foreach ($log as $key => $value)
                 <tr>
                     <td scope="row">{{ ++$key }}</td>
-                    <td>{{ $value->storage_name }}</td>
+                    <td>{{ $value->storage->storage_name }}</td>
                     <td>{{ $value->money_before }}</td>
                     <td>{{ $value->earn }}</td>
                     <td>{{ $value->spend }}</td>
@@ -241,27 +225,12 @@
         @endif
     </table>
 @section('menu-bar')
-    {{-- Thêm từ Exel --}}
-    <table>
-        <tr>
-            <td>
-                <button type="button" class="btn bg-gradient-success btn-sm menu-bar" data-toggle="modal"
-                    data-target="#import_excel_form">Thêm excel</button>
-            </td>
-            <td>
-                <form action="{{ route('export') }}" method="post">
-                    @csrf
-                    <button type="submit" class="btn bg-gradient-primary btn-sm menu-bar">Xuất
-                        exel</button>
-                </form>
-            </td>
-            <td>
-                <button type="button" class="btn bg-gradient-warning btn-sm menu-bar" data-toggle="modal"
-                    data-target="#thucong">Thủ
-                    công</button>
-            </td>
-        </tr>
-    </table>
+    <button type="button" class="btn bg-gradient-success btn-sm menu-bar">Thêm
+        từ exel</button>
+    <button type="button" class="btn bg-gradient-primary btn-sm menu-bar">Xuất
+        exel</button>
+    <button type="button" class="btn bg-gradient-warning btn-sm menu-bar" data-toggle="modal" data-target="#thucong">Thủ
+        công</button>
 @endsection
 @endsection
 @section('scripts')
@@ -284,7 +253,7 @@
             data: id,
             success: function(response) {
                 if (response.success) {
-                    $("#edit_storage_id").val(response.success.storage_name);
+                    $("#edit_storage_id").val(response.success.storage_id).change();
                     $("#edit_money_before").val(response.success.money_before);
                     $("#edit_earn").val(response.success.earn);
                     $("#edit_spend").val(response.success.spend);

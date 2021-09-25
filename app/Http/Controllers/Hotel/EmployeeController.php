@@ -89,7 +89,6 @@ class EmployeeController extends Controller
      */
     public function destroy($id)
     {
-        $this->employeesRepository->delete($id);
-        return redirect()->back()->with('danger', 'Đã xóa thành công !');
+        //
     }
 }

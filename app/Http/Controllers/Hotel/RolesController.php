@@ -23,7 +23,6 @@ class RolesController extends Controller
     }
     public function index()
     {
-        $this->authorize('manage_employee', 'manage_employee');
         $employee_list = $this->employeesRepository->all();
         $role_list = $this->roleRepository->all();
         $params = [

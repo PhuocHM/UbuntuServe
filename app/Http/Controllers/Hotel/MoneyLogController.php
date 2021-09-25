@@ -6,9 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Repositories\Hotel\Eloquents\MoneyLogRepository;
 use App\Repositories\Hotel\Eloquents\StorageRepository;
-use App\Imports\ExcelImport;
-use App\Exports\ExcelExport;
-use Maatwebsite\Excel\Facades\Excel;
 
 class MoneyLogController extends Controller
 {
@@ -106,15 +103,5 @@ class MoneyLogController extends Controller
         $this->moneyLogRepository->delete($id);
         $popup = "Đã xóa thành công";
         return redirect()->route('money-log.index')->with('success', $popup);
-    }
-    public function export_excel()
-    {
-        return Excel::download(new ExcelExport, 'money-log.xlsx');
-    }
-    public function import_excel(Request $request)
-    {
-        $path = $request->file('file')->getRealPath();
-        Excel::import(new ExcelImport, $path);
-        return back()->with('success', "Đã thêm thành công");
     }
 }

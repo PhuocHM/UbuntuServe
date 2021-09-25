@@ -48,8 +48,6 @@ class EmployeesRepository implements EmployeesInterface
     }
     public function delete($id)
     {
-        $employee = User::find($id);
-        $employee->delete();
-        return $employee;
+        // 
     }
 }

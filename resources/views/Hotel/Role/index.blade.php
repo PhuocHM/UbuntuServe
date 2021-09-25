@@ -120,7 +120,6 @@
             <th scope="col">Email</th>
             <th scope="col">Mật khẩu</th>
             <th scope="col">Chức vụ</th>
-            <th scope="col"></th>
         </tr>
         <tbody id="display-employee">
             @include('include.employee_list')

@@ -29,21 +29,17 @@ Route::group(['prefix' => 'Hotel',  'middleware' => 'auth'], function () {
     Route::resource('selling', SellingController::class);
     Route::resource('selling-detail', SellingDetailController::class);
     Route::resource('money-log', MoneyLogController::class);
-    // Route::post('import_excel', [MoneyLogController::class, 'import_excel']);
-    // Route::post('export_excel', [MoneyLogController::class, 'export_excel']);
     Route::resource('stock', StockController::class);
     Route::resource('supplier', SupplierController::class);
     Route::resource('supplier-product', SupplierProductController::class);
     Route::resource('home', HomeController::class);
     Route::resource('role', RolesController::class);
     Route::resource('employee', EmployeeController::class);
-    Route::get('employee/delete/{id}', [EmployeeController::class, 'destroy'])->name('employee.delete');
     Route::get('/seach', [CustomerController::class, 'seach'])->name('customer.seach');
     Route::get('/role/{id}/seachrole', [RolesController::class, 'seachRole'])->name('role.seach');
     Route::get('/role/{id}/seach', [RolesController::class, 'seach'])->name('role.seachContent');
 });
-Route::post('import_excel', [MoneyLogController::class, 'import_excel'])->name('import');
-Route::post('export_excel', [MoneyLogController::class, 'export_excel'])->name('export');
+
 Route::post('authlogin', [HomeController::class, 'postLogin']);
 Route::get('authlogout', [HomeController::class, 'logout'])->name('user_logout');
 Route::get('authlogin', [HomeController::class, 'login'])->middleware('CheckUser')->name('login');;

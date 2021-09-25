@@ -145,10 +145,9 @@
         @endif
     </div>
     <div>
-        <h1 class="display-4 text-center">Menu</h1>
-
+        <h1 class="display-4 text-center">Sản phẩm bán ra</h1>
     </div>
-    {{-- <div style="float: left">
+    <div style="float: left">
         <table>
             <tr>
                 <td>
@@ -173,7 +172,7 @@
                 </td>
             </tr>
         </table>
-    </div> --}}
+    </div>
     <table class="table table-hover">
         <tr>
             <th scope="col">STT</th>

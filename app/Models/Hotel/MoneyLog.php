@@ -10,9 +10,6 @@ class MoneyLog extends Model
 {
     use HasFactory;
     protected $table = "moneylog";
-    protected $fillable = [
-        "storage_name", "years", "month", "money_before", "earn", "spend", "total"
-    ];
     public function storage()
     {
         return $this->belongsTo(Storage::class, 'storage_id', 'id');

@@ -187,7 +187,7 @@
     <div>
         <h1 class="display-4 text-center">Quản lí hàng hóa</h1>
     </div>
-    {{-- <div style="float: left">
+    <div style="float: left">
         <table>
             <tr>
                 <td>
@@ -212,7 +212,7 @@
                 </td>
             </tr>
         </table>
-    </div> --}}
+    </div>
     <table class="table table-hover">
         <tr>
             <th scope="col">STT</th>
@@ -250,9 +250,9 @@
         @endif
     </table>
 @section('menu-bar')
-    {{-- <button type="button" class="btn bg-gradient-success btn-sm menu-bar">Thêm
+    <button type="button" class="btn bg-gradient-success btn-sm menu-bar">Thêm
         NCC</button>
-    <button type="button" class="btn bg-gradient-primary btn-sm menu-bar">Thêm SP</button> --}}
+    <button type="button" class="btn bg-gradient-primary btn-sm menu-bar">Thêm SP</button>
     <button type="button" class="btn bg-gradient-warning btn-sm menu-bar" data-toggle="modal" data-target="#thucong">Nhập
         hàng</button>
 @endsection

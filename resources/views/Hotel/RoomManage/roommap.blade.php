@@ -712,14 +712,12 @@
                         `<input type="hidden" class="form-control" name="product_id[]" value="` +
                         response.success
                         .id + `"></td>
-                        <td><input type="number" class="form-control target-a" name="qty[]" value="1" onchange="caculatePrice()"></td>
-                        <td><input type="number" class="form-control"  value="` + response
+                        <td><input type="text" class="form-control" name="qty[]" value="1"></td>
+                        <td><input type="text" class="form-control"  value="` + response
                         .success
                         .price + `"></td>
                         <td><input type="checkbox" class="form-control"></td>
-                        <td><input name="total_price[]" type="number"  class="form-control target-b" value="` +
-                        response
-                        .success
+                        <td><input name="total_price[]" type="text" class="form-control" value="` + response.success
                         .price + `"></td>
                     </tr>`)
                 } else {
@@ -728,13 +726,6 @@
             }
         })
     });
-
-    function caculatePrice() {
-        // $(".target-a").bind('keyup mouseup', function() {
-        // var x = document.getElementsByTagName("qty[]");
-        // alert("changed");
-        // });
-    }
 </script>
 <script type="text/javascript">
     $("#add-type").click(function(e) {
